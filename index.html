@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8f2">
+  <title>A little flower for you</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: ui-rounded, "Trebuchet MS", system-ui, sans-serif;
+      color: #49364c;
+      background: #fff8f2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 50% 40%, #fffdf9 0, #fff8f2 58%, #fceee9 100%);
+    }
+    main {
+      width: min(100% - 32px, 440px);
+      padding: 34px 24px 30px;
+      text-align: center;
+      border: 1px solid #f2e4df;
+      border-radius: 28px;
+      background: rgb(255 255 255 / 78%);
+      box-shadow: 0 20px 70px rgb(105 73 76 / 10%);
+    }
+    .eyebrow {
+      margin: 0 0 4px;
+      color: #a36e88;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 9vw, 2.7rem);
+      font-weight: 500;
+      letter-spacing: -.04em;
+    }
+    .flower {
+      position: relative;
+      width: 250px;
+      height: 330px;
+      margin: 4px auto 2px;
+    }
+    .stem {
+      position: absolute;
+      z-index: 0;
+      top: 145px;
+      left: 121px;
+      width: 9px;
+      height: 160px;
+      border-radius: 9px;
+      background: linear-gradient(90deg, #4f9b69, #75bd78 55%, #4d9964);
+      transform: scaleY(0);
+      transform-origin: top;
+      animation: stem-grow .8s .45s ease-out forwards;
+    }
+    .leaf {
+      position: absolute;
+      top: 222px;
+      left: 91px;
+      width: 62px;
+      height: 29px;
+      border-radius: 100% 0 100% 0;
+      background: linear-gradient(135deg, #8bcf86, #4f9b69);
+      transform: rotate(18deg) scale(0);
+      transform-origin: right center;
+      animation: leaf-grow .45s 1.05s ease-out forwards;
+    }
+    .leaf.right {
+      top: 258px;
+      left: 125px;
+      transform: rotate(-18deg) scale(0) scaleX(-1);
+      transform-origin: left center;
+      animation-delay: 1.2s;
+    }
+    .head {
+      position: absolute;
+      z-index: 1;
+      top: 10px;
+      left: 5px;
+      width: 240px;
+      height: 240px;
+      animation: float 3.8s 1.8s ease-in-out infinite;
+    }
+    .petal {
+      position: absolute;
+      top: 14px;
+      left: 84px;
+      width: 72px;
+      height: 108px;
+      border: 1px solid rgb(255 255 255 / 65%);
+      border-radius: 52% 52% 45% 45%;
+      background: linear-gradient(145deg, #ffd8e6 5%, #f7a9ca 58%, #e88db7);
+      box-shadow: inset -5px -7px 12px rgb(180 87 136 / 9%);
+      opacity: 0;
+      transform: rotate(var(--angle)) scale(.08);
+      transform-origin: 36px 106px;
+      animation: bloom .7s var(--delay) cubic-bezier(.2, .8, .25, 1.2) forwards;
+    }
+    .center {
+      position: absolute;
+      top: 91px;
+      left: 91px;
+      width: 58px;
+      height: 58px;
+      border: 4px solid #fff3b4;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #ffe98f, #f6b83e 72%);
+      box-shadow: 0 2px 12px rgb(166 120 50 / 22%);
+      opacity: 0;
+      transform: scale(.2);
+      animation: center-pop .45s 1.15s cubic-bezier(.2, .8, .25, 1.3) forwards;
+    }
+    .message {
+      min-height: 1.6em;
+      margin: 8px 0 18px;
+      color: #735d72;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+    button {
+      min-height: 46px;
+      padding: 0 21px;
+      border: 0;
+      border-radius: 999px;
+      background: #9d6888;
+      color: white;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 5px 14px rgb(157 104 136 / 20%);
+      transition: transform .18s ease, background .18s ease;
+    }
+    button:hover { background: #875573; transform: translateY(-2px); }
+    button:focus-visible { outline: 3px solid #e4a5c2; outline-offset: 4px; }
+    @keyframes bloom {
+      0% { opacity: 0; transform: rotate(var(--angle)) scale(.08); }
+      70% { opacity: 1; transform: rotate(var(--angle)) scale(1.08); }
+      100% { opacity: 1; transform: rotate(var(--angle)) scale(1); }
+    }
+    @keyframes center-pop { to { opacity: 1; transform: scale(1); } }
+    @keyframes stem-grow { to { transform: scaleY(1); } }
+    @keyframes leaf-grow { to { transform: rotate(18deg) scale(1); } }
+    @keyframes float { 50% { transform: translateY(-6px) rotate(1deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">A tiny surprise</p>
+    <h1>For you 🌷</h1>
+    <div class="flower" role="img" aria-label="A pink flower blooming">
+      <div class="stem"></div>
+      <div class="leaf"></div>
+      <div class="leaf right"></div>
+      <div class="head" aria-hidden="true">
+        <span class="petal" style="--angle:0deg;--delay:.2s"></span>
+        <span class="petal" style="--angle:45deg;--delay:.28s"></span>
+        <span class="petal" style="--angle:90deg;--delay:.36s"></span>
+        <span class="petal" style="--angle:135deg;--delay:.44s"></span>
+        <span class="petal" style="--angle:180deg;--delay:.52s"></span>
+        <span class="petal" style="--angle:225deg;--delay:.6s"></span>
+        <span class="petal" style="--angle:270deg;--delay:.68s"></span>
+        <span class="petal" style="--angle:315deg;--delay:.76s"></span>
+        <span class="center"></span>
+      </div>
+    </div>
+    <p class="message" id="message" aria-live="polite">Hope this little flower makes you smile.</p>
+    <button type="button" id="note-button" aria-controls="message">A little note</button>
+  </main>
+  <script>
+    const button = document.querySelector('#note-button');
+    const message = document.querySelector('#message');
+    button.addEventListener('click', () => {
+      message.textContent = 'You make ordinary days feel a little brighter. 💛';
+      button.textContent = 'Sending you a smile';
+      button.disabled = true;
+    });
+  </script>
+</body>
+</html>
